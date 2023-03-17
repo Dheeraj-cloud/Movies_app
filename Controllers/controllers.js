@@ -1,6 +1,6 @@
 const Users = require("../Models/users");
 const Movies = require("../Models/movies");
-const bcrypt =  require('bcrypt')
+const bcrypt =  require('bcryptjs')
 
 const createUser = async (req, res) => {
   const username = req.body.username;
@@ -14,7 +14,7 @@ const validateUser = async (req, res) => {
   const name = req.body.username;
   const pass = req.body.password;
   const users = await Users.findOne({ username: name })
-  const validPass   = await bcrypt.compare(pass,users.password);
+  const validPass   = await bcryptjs.compare(pass,users.password);
   
   if (!users) return res.json({ valid: false });
   else {

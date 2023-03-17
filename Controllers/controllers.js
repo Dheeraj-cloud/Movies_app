@@ -1,6 +1,6 @@
 const Users = require("../Models/users");
 const Movies = require("../Models/movies");
-const bcrypt = require("bcrypt");
+const bcrypt =  require('bcrypt')
 
 const createUser = async (req, res) => {
   const username = req.body.username;

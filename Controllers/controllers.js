@@ -14,7 +14,7 @@ const validateUser = async (req, res) => {
   const name = req.body.username;
   const pass = req.body.password;
   const users = await Users.findOne({ username: name })
-  const validPass   = await bcryptjs.compare(pass,users.password);
+  const validPass   =  bcrypt.compare(pass,users.password);
   
   if (!users) return res.json({ valid: false });
   else {

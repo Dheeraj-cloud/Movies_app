@@ -38,6 +38,7 @@ const getAllMovies = async(req,res)=>{
 const deleteMovies = async(req,res)=>{
   const movie_Id = req.body.id;
   await Movies.findOneAndDelete({_id:movie_Id}) 
+  return res.json({Msg:"Deleted Movies Successfully"})
 }
 
 const upDateMovies = async(req,res)=>{
@@ -46,7 +47,7 @@ const upDateMovies = async(req,res)=>{
     new:true,
     runValidators:true
   })
-  return 200;
+  return res.json({Msg:"Updated Movies Successfully"});
 }
 
 module.exports = {

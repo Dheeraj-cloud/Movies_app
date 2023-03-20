@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Verifytoken = require('../jwt/jwt')
 
 const {
     createUser,
@@ -9,13 +10,14 @@ const {
     deleteMovies,
     upDateMovies
    
-} = require('../Controllers/controllers')
+} = require('../Controllers/controllers');
+const verifyToken = require('../jwt/jwt');
 
 router.route('/signup').post(createUser);
 router.route('/login').post(validateUser);
-router.route('/createMovie').post(createMovie);
-router.route('/').get(getAllMovies);
-router.route('/delete').post(deleteMovies);
-router.route('/update').put(upDateMovies);
+router.route('/createMovie').post(verifyToken,createMovie);
+router.route('/').get(verifyToken,getAllMovies);
+router.route('/delete').post(verifyToken,deleteMovies);
+router.route('/update').put(verifyToken,upDateMovies);
 
 module.exports = router

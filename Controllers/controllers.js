@@ -22,7 +22,7 @@ const validateUser = async (req, res) => {
   else {
     if (validPass) {
       const token = jwt.sign({ user_id: name }, process.env.TOKEN_KEY, {
-        expiresIn: "10s",
+        expiresIn: "300s",
       });
       return res.json({ valid: true, newtoken: token });
     }
